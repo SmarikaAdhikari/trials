@@ -20,15 +20,15 @@ appBar: AppBar(
 body:
 ElevatedButton(onPressed: (){
     final snackBar = SnackBar(
-                            content: const Text('Yay! A SnackBar!'),
-                            action: SnackBarAction(
-                              label: 'Incorrect',
-                              onPressed: () {},
-                            ),
-                          );
+      content: const Text('Yay! A SnackBar!'),
+      action: SnackBarAction(
+        label: 'Incorrect',
+        onPressed: () {},
+      ),
+    );
 
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
 }, child:const  Text("trio")),
     );
   }

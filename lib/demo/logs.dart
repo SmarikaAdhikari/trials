@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+// import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/trio_service.dart';
 // import 'package:get/get.dart';
 
@@ -87,25 +88,18 @@ class _LogsPageState extends ConsumerState<LogsPage> {
                 ),
               ),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate() 
+                   ) {
+                  
                   ref.read(loginProvider).login(emailEditingController.text,
                       passwordEditingController.text, context);
                 }
-                // } else {
-                //   ref.read(loginProvider).login(emailEditingController.text,
-                //       passwordEditingController.text, context);
-                //   final snackBar = SnackBar(
-                //     content: const Text('invalid email or password'),
-                //     action: SnackBarAction(
-                //       label: 'Check again',
-                //       onPressed: () {},
-                //     ),
-                //   );
-
-                //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                // }
+             
               },
             ),
+            ElevatedButton(onPressed: (){
+              ref.read(loginProvider).getTrial();
+            }, child: const Text("trio")),
           ]),
         ),
       ),

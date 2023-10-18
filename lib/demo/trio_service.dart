@@ -1,20 +1,21 @@
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, body_might_complete_normally_nullable, unused_local_variable, unnecessary_null_comparison
 
+
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:trials/demo/dio.dart';
-// import 'package:nb_utils/nb_utils.dart';
-import 'package:trials/demo/try.dart';
-// import 'package:trials/dio.dart';
+import 'package:trials/demo/cons/constants.dart';
+// import 'package:trials/demo/cons/constants.dart';
+import 'package:trials/demo/getapi/provider.dart';
+// import 'package:trials/demo/logs.dart';
+// import 'package:trials/demo/try.dart';
+// import 'package:trials/demo/try.dart';
+import 'package:trials/dio.dart';
 
-
-
-
-
-
+// bool userLoggedIn = false;
 class Logs {
   Future<int?> login(String email, String password, BuildContext context) async {
     const url = "http://campusapi.suktas.com/api/TokenAuth/Authenticate";
@@ -24,20 +25,34 @@ class Logs {
     };
     try {
       final res = await Api().post(url, data: data);
-      print("res is $res");
-          if (res.statusCode == 200) {
-       Get.to(const Trio());
+          // print(data);   
+        var token = json.decode(res.data)['result']['accessToken'];
+          await setValue(accessToken, token);
+          print(res.data);
+          // if(accessToken != null){
+          //  Get.to(const AccountPage());
+          // }
 
-      }
-      else{
-      Fluttertoast.showToast(msg: "incorrect password or email");
-      }
-      //  print(res.statusCode);
-      //  RestartAppTry.init(context);
-      return res.statusCode;
+          // else{
+          //   Get.to(const Trio());
+          // }
+       Get.to(const AccountPage());
+
+
     } catch (e) {
       return null;
-      //rethrow;
+   
+    }
+  }
+   Future getTrial() async {
+    try {
+      final res = await Api().get('https://dogapi.dog/api/facts');
+      // print(res.statusCode);
+    
+    
+ 
+    } catch (e) {
+      throw Exception('Error getting suggestion $e');
     }
   }
 }

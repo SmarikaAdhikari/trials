@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   http: ^1.1.0
   nb_utils: ^6.0.6
+  supabase_flutter: ^1.10.11
 
 
 

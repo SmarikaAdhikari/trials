@@ -4,27 +4,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-// import 'package:get/get.dart' as gt;
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/cons/my_config.dart';
 
-// import 'user/api_all/Auth/constants.dart';
-// import 'user/utils/my_config.dart';
 
 class Api {
   final Dio api = Dio();
-
   final dio = createDio();
-
   final tokenDio = Dio(BaseOptions(baseUrl: getAppUrl()));
-
   Api._internal();
-
   static final _singleton = Api._internal();
-
   factory Api() => _singleton;
-
   static Dio createDio() {
     // String accesstoken = StorageUtil.getString(access);
     var dio = Dio(BaseOptions(
@@ -209,6 +200,7 @@ class AppInterceptors extends Interceptor {
         throw DeadlineExceededException(err.requestOptions, "");
       case DioErrorType.response:
         String errorMsg = json.decode(err.response.toString())["error"]["message"];
+        // print(err.response!.statusCode);
         Fluttertoast.showToast(msg: errorMsg);
         switch (err.response?.statusCode) {
           case 400:

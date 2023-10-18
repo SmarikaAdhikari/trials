@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-
+import 'package:trials/demo/getapi/provider.dart';
 import 'package:trials/demo/logs.dart';
 
 
+
 void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await initialize();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
        
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LogsPage(),
+      home: const AccountPage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -55,6 +57,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
    
     return Scaffold(
       appBar: AppBar(

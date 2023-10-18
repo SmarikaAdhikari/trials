@@ -19,7 +19,7 @@ class Logs {
     };
     try {
       final res = await Api().post(url, data: data);
-      print("res is ");
+      
     } catch (e) {
       return null;
       //rethrow;

@@ -9,9 +9,6 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/cons/my_config.dart';
 
-// import 'user/api_all/Auth/constants.dart';
-// import 'user/utils/my_config.dart';
-
 class Api {
   final Dio api = Dio();
 
@@ -44,7 +41,7 @@ class Api {
         return handler.next(e);
       },
     ));
-  
+
     dio.interceptors.addAll({
       AppInterceptors(dio),
     });
@@ -62,6 +59,7 @@ class Api {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
+    print("300e");
     try {
       Response response = await dio.post<String>(
         uri,
@@ -73,7 +71,7 @@ class Api {
       );
 
       final message = json.decode(response.data)["message"];
-      if(message != null) {
+      if (message != null) {
         Fluttertoast.showToast(msg: message);
       }
 
@@ -190,11 +188,11 @@ class AppInterceptors extends Interceptor {
     final token = await getStringAsync(accessToken);
     print(token);
 
-    options.headers.addAll({
-      "Authorization": token.isEmptyOrNull ? "" : "Bearer $token",
-      'content-Type': 'application/json',
-      "validateStatus": (_) => true,
-    });
+    // options.headers.addAll({
+    //   "Authorization": token.isEmptyOrNull ? "" : "Bearer $token",
+    //   'content-Type': 'application/json',
+    //   "validateStatus": (_) => true,
+    // });
     return super.onRequest(options, handler);
   }
 
@@ -208,7 +206,8 @@ class AppInterceptors extends Interceptor {
       case DioErrorType.receiveTimeout:
         throw DeadlineExceededException(err.requestOptions, "");
       case DioErrorType.response:
-        String errorMsg = json.decode(err.response.toString())["error"]["message"];
+        String errorMsg =
+            json.decode(err.response.toString())["error"]["message"];
         Fluttertoast.showToast(msg: errorMsg);
         switch (err.response?.statusCode) {
           case 400:
@@ -307,4 +306,3 @@ class DeadlineExceededException extends DioError {
     return error.toString();
   }
 }
-

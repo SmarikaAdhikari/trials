@@ -14,18 +14,18 @@ class _TrioState extends State<Trio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-appBar: AppBar(
-  title: const Text('Trio'),
-),
-body:
-ElevatedButton(onPressed: (){
-    final snackBar = SnackBar(
-                            content: const Text('Yay! A SnackBar!'),
-                            action: SnackBarAction(
-                              label: 'Incorrect',
-                              onPressed: () {},
-                            ),
-                          );
+        appBar: AppBar(
+          title: const Text('Trio'),
+        ),
+        body:
+        ElevatedButton(onPressed: (){
+            final snackBar = SnackBar(
+              content: const Text('Yay! A SnackBar!'),
+              action: SnackBarAction(
+                label: 'Incorrect',
+                onPressed: () {},
+              ),
+            );
 
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
   

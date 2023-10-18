@@ -181,11 +181,11 @@ class AppInterceptors extends Interceptor {
     final token = await getStringAsync(accessToken);
     print(token);
 
-    // options.headers.addAll({
-    //   "Authorization": token.isEmptyOrNull ? "" : "Bearer $token",
-    //   'content-Type': 'application/json',
-    //   "validateStatus": (_) => true,
-    // });
+    options.headers.addAll({
+      "Authorization": token.isEmptyOrNull ? "" : "Bearer $token",
+      'content-Type': 'application/json',
+      "validateStatus": (_) => true,
+    });
     return super.onRequest(options, handler);
   }
 
@@ -199,7 +199,8 @@ class AppInterceptors extends Interceptor {
       case DioErrorType.receiveTimeout:
         throw DeadlineExceededException(err.requestOptions, "");
       case DioErrorType.response:
-        String errorMsg = json.decode(err.response.toString())["error"]["message"];
+        String errorMsg =
+            json.decode(err.response.toString())["error"]["message"];
         // print(err.response!.statusCode);
         Fluttertoast.showToast(msg: errorMsg);
         switch (err.response?.statusCode) {

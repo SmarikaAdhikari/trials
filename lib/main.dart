@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:trials/demo/getapi/provider.dart';
-import 'package:trials/demo/logs.dart';
+import 'package:trials/demo/cons/constants.dart';
+import 'package:trials/demo/cons/routes.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialize();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp( const ProviderScope(child: MyApp( )));
 }
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AccountPage(),
+      // home: const LogsPage(),
+      initialRoute: 
+      
+      // '/log',
+     getStringAsync(accessToken).isEmptyOrNull ? '/log' : '/acc',
+    
+      getPages: page,
       debugShowCheckedModeBanner: false,
     );
   }

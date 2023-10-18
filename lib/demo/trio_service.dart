@@ -10,6 +10,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 // import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/getapi/provider.dart';
+import 'package:trials/demo/logs.dart';
 // import 'package:trials/demo/logs.dart';
 // import 'package:trials/demo/try.dart';
 // import 'package:trials/demo/try.dart';
@@ -30,13 +31,13 @@ class Logs {
         var token = json.decode(res.data)['result']['accessToken'];
           await setValue(accessToken, token);
           print(res.data);
-          // if(accessToken != null){
-          //  Get.to(const AccountPage());
-          // }
+          if(accessToken != null){
+           Get.to(const AccountPage());
+          }
 
-          // else{
-          //   Get.to(const Trio());
-          // }
+          else{
+            Get.to(const LogsPage());
+          }
        Get.to(const AccountPage());
 
 

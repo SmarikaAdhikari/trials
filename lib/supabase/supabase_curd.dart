@@ -26,7 +26,7 @@ class SupaBaseRepo {
       if (response == null)
        {
         Fluttertoast.showToast(msg: "Updated Successfully");
-      }
+       }
     } catch (e) 
     {
       // print(e);

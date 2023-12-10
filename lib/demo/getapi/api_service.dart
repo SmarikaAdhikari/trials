@@ -13,23 +13,19 @@ final accountFutureProvider = FutureProvider.autoDispose<Account>((ref) async {
   return ApiService.getAccounts();
 });
 
-class AccountService{
+class AccountService {
+  Future<Account> getAccounts() async {
+    const url =
+        "http://campusapi.suktas.com/api/services/app/AccountLedgers/GetAll";
+    try {
+      final res = await Api().get((url));
+      final data = json.decode(res.data)['result'];
+      // print(data);
+      // Get.to(const AccountPage());
 
-Future<Account> getAccounts() async {
-  const url = "http://campusapi.suktas.com/api/services/app/AccountLedgers/GetAll";
-  try {
-    final res = await Api().get((url));  
-    final data = json.decode(res.data)['result'];
-    print (data);
-    // Get.to(const AccountPage());
-
-     return Account.fromJson(data);
-
-  } catch (e)
-   {
-    rethrow;
-  
+      return Account.fromJson(data);
+    } catch (e) {
+      rethrow;
+    }
   }
-
-}
 }

@@ -1,8 +1,10 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:trials/erpapi/erp_data_page.dart';
+import 'package:trials/erpapi/login_page.dart';
 import 'package:trials/demo/getapi/provider.dart';
-import 'package:trials/demo/logs.dart';
+import 'package:trials/demo/postapi/logs.dart';
 import 'package:trials/main.dart';
 
 List <GetPage> page =
@@ -25,6 +27,18 @@ List <GetPage> page =
     transition: Transition.circularReveal,
     transitionDuration: const Duration(milliseconds: 1000),
   ),
+      GetPage(
+    name: '/login',
+    page: () => const LoginPage(),
+    transition: Transition.circularReveal,
+    transitionDuration: const Duration(milliseconds: 1000),
+  ),
+       GetPage(
+    name: '/data',
+    page: () => const DataPage(),
+    transition: Transition.circularReveal,
+    transitionDuration: const Duration(milliseconds: 1000),
+  )
 
 ];
 

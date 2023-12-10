@@ -1,19 +1,20 @@
-// import 'package:app/demo/try.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-// import 'package:trials/demo/cons/constants.dart';
-import 'package:trials/demo/trio_service.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
+import 'package:trials/erpapi/erp_data_page.dart';
+import 'package:trials/erpapi/erp_service.dart';
 
-class LogsPage extends ConsumerStatefulWidget {
-  const LogsPage({super.key});
+
+
+class LoginPage extends ConsumerStatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  ConsumerState<LogsPage> createState() => _LogsPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LogsPageState extends ConsumerState<LogsPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   final emailEditingController = TextEditingController();
@@ -22,6 +23,7 @@ class _LogsPageState extends ConsumerState<LogsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 84, 179, 247),
       appBar: AppBar(
         title: const Text('Login'),
         centerTitle: true,
@@ -88,18 +90,15 @@ class _LogsPageState extends ConsumerState<LogsPage> {
                 ),
               ),
               onPressed: () {
-                if (_formKey.currentState!.validate() 
+                if (_formKey.currentState!.validate()
                    ) {
-                  
-                  ref.read(loginProvider).login(emailEditingController.text,
+
+                  ref.read(logInProvider).login(emailEditingController.text,
                       passwordEditingController.text, context);
+                      Get.to(const DataPage());
                 }
-             
               },
             ),
-            ElevatedButton(onPressed: (){
-              ref.read(loginProvider).getTrial();
-            }, child: const Text("trio")),
           ]),
         ),
       ),

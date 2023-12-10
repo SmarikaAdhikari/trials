@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/cons/routes.dart';
+import 'package:trials/erpapi/login_page.dart';
+
 
 
 
@@ -21,20 +23,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const LogsPage(),
-      initialRoute: 
+      // home: const DataPage());
+      home: const LoginPage());
+
+
+    //   initialRoute: 
       
-      // '/log',
-     getStringAsync(accessToken).isEmptyOrNull ? '/log' : '/acc',
+
+    //  getStringAsync(accessToken).isEmptyOrNull ? '/login' : '/data',
     
-      getPages: page,
-      debugShowCheckedModeBanner: false,
-    );
+    //   getPages: page,
+
+    // );
   }
 }
 

@@ -2,11 +2,11 @@
 
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/cons/my_config.dart';
+
 
 class Api {
   final Dio api = Dio();
@@ -185,6 +185,7 @@ class AppInterceptors extends Interceptor {
       "Authorization": token.isEmptyOrNull ? "" : "Bearer $token",
       'content-Type': 'application/json',
       "validateStatus": (_) => true,
+      "Abp.TenantId": 1074,
     });
     return super.onRequest(options, handler);
   }

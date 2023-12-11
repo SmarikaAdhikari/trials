@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:trials/demo/cons/constants.dart';
-import 'package:trials/demo/cons/routes.dart';
 import 'package:trials/erpapi/login_page.dart';
 
 

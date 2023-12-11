@@ -4,9 +4,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/dio.dart';
+import 'package:trials/erpapi/erp_data_page.dart';
 
 
 
@@ -25,7 +27,7 @@ class LogIn {
         var token = json.decode(res.data)['result']['accessToken'];
           await setValue(accessToken, token);
           print(res.data);
-          // Get.to(const DataPage());
+          Get.to(const DataPage());
         
    
 

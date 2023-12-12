@@ -22,7 +22,7 @@ class AccountGroupModel {
 
 class Item {
     String name;
-    Narration narration;
+    String narration;
     bool affectGrossProfit;
     int nature;
     int accountGroupId;
@@ -43,7 +43,7 @@ class Item {
 
     factory Item.fromJson(Map<String, dynamic> json) => Item(
         name: json["name"],
-        narration: narrationValues.map[json["narration"]]!,
+        narration: json["narration"],
         affectGrossProfit: json["affectGrossProfit"],
         nature: json["nature"],
         accountGroupId: json["accountGroupId"],
@@ -54,7 +54,7 @@ class Item {
 
     Map<String, dynamic> toJson() => {
         "name": name,
-        "narration": narrationValues.reverse[narration],
+        "narration": narration,
         "affectGrossProfit": affectGrossProfit,
         "nature": nature,
         "accountGroupId": accountGroupId,
@@ -64,13 +64,13 @@ class Item {
     };
 }
 
-enum Narration {
-    EMPTY
-}
+// enum Narration {
+//     EMPTY
+// }
 
-final narrationValues = EnumValues({
-    " ": Narration.EMPTY
-});
+// final narrationValues = EnumValues({
+//     " ": Narration.EMPTY
+// });
 
 class EnumValues<T> {
     Map<String, T> map;

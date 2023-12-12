@@ -16,9 +16,9 @@ class AccountGroupsService {
     const url =
         "http://erpapi.suktas.com/api/services/app/AccountGroups/GetAll";
     try {
-      final res = await Api().get((url));
+      final res = await Api().get(url);
       final data = json.decode(res.data)['result'];
-      // print(data);
+      print(data);
       return AccountGroupModel.fromJson(data);
     } catch (e) {
       rethrow;
@@ -28,20 +28,21 @@ class AccountGroupsService {
   Future<void> CreateOrEdit(
     String name,
     String narration,
-    bool affectGrossProfit,
-    int nature,
-    int groupUnder,
-    // int id
+    // bool affectGrossProfit,
+    // bool isDefault,
+    // int nature,
+    // int groupUnder,
+  
   ) async {
     const url =
-        "http://erpapi.suktas.com/api/services/app/AccountGroups/CreateOrEdit";
-    var datta = {
+        "https://erpapi.suktas.com/api/services/app/AccountGroups/CreateOrEdit";
+var datta = {
       "name": name,
       "narration": narration,
-      "affectGrossProfit": affectGrossProfit,
-      "nature": nature,
-      "groupUnder": groupUnder,
-      // "id": id,
+      "affectGrossProfit": false,
+      "nature": 4,
+      "groupUnder": 109,
+    
     };
     try {
       final res = await Api().post(url, data: datta);

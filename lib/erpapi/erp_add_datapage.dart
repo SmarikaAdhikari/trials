@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:trials/erpapi/erp_data_page.dart';
+// import 'package:trials/erpapi/erp_model/erp_accountgroup_model.dart';
 import 'package:trials/erpapi/erp_repository/erp_accountgroup_repositorty.dart';
 
 class AddPage extends ConsumerStatefulWidget {
@@ -15,16 +16,23 @@ class AddPage extends ConsumerStatefulWidget {
 }
 
 class _AddPageConsumerState extends ConsumerState<AddPage> {
+  late int accValue;
+  String selectedValue = 'Option 1';
+  List<String> dropdownItems = ['Option 1', 'Option 2', 'Option 3'];
   final _formKey = GlobalKey<FormState>();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _narrController = TextEditingController();
   TextEditingController _affGpController = TextEditingController();
-  TextEditingController _natController = TextEditingController();
-  TextEditingController _grpUnderController = TextEditingController();
-  TextEditingController _idController = TextEditingController();
+    TextEditingController _isdeffController = TextEditingController();
+    TextEditingController _natcontroller = TextEditingController(text: 'Default Value');
+    TextEditingController _grpUndercontroller = TextEditingController(text: 'Default Value');
+  // TextEditingController _natController = TextEditingController();
+  // TextEditingController _grpUnderController = TextEditingController();
+  // TextEditingController _idController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    // final accProvider = ref.watch(accountGroupsProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -44,7 +52,6 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 20),
-
                 Container(
                   height: 50,
                   decoration: BoxDecoration(
@@ -93,17 +100,18 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
-                      controller: _natController,
-                      decoration: const InputDecoration(hintText: '  Nature'),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
+                      enabled: false,
+                      
+                      // controller: _natController,
+                      
+                      decoration: const InputDecoration(hintText: ' Nature'),
+                 
                       onSaved: (value) {},
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                Container(
+                        Container(
                   height: 50,
                   decoration: BoxDecoration(
                     border: Border.all(),
@@ -112,18 +120,16 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
-                      controller: _grpUnderController,
-                      decoration:
-                          const InputDecoration(hintText: 'Group Under'),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
+                       enabled: false,
+                      //  controller: Text("de") ,
+                      // controller: _grpUnderController,
+                      decoration: const InputDecoration(hintText: 'Group Under control '),
+                  
                       onSaved: (value) {},
                     ),
                   ),
                 ),
-       
-                // const SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Container(
                 //   height: 50,
                 //   decoration: BoxDecoration(
@@ -133,8 +139,9 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                 //   child: Padding(
                 //     padding: const EdgeInsets.only(left: 8.0),
                 //     child: TextFormField(
-                //       controller: _idController,
-                //       decoration: const InputDecoration(hintText: '  Id'),
+                //       controller: _isdeffController,
+                //       decoration:
+                //           const InputDecoration(hintText: 'Default'),
                 //       validator: FormBuilderValidators.compose([
                 //         FormBuilderValidators.required(),
                 //       ]),
@@ -142,8 +149,39 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                 //     ),
                 //   ),
                 // ),
-                const SizedBox(height: 20),
+                // const SizedBox(height: 20),
+                // Container(
+                //   height: 50,
+                //   decoration: BoxDecoration(
+                //     border: Border.all(),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(left: 8.0),
+                //     child: TextField(
+                //       decoration: InputDecoration(
+                //         labelText: 'Select an option',
+                //         suffixIcon: DropdownButton<String>(
+                //           value: selectedValue,
+                //           onChanged: (String? newValue) {
+                //             setState(() {
+                //               selectedValue = newValue!;
+                //             });
+                //           },
+                //           items: dropdownItems
+                //               .map<DropdownMenuItem<String>>((String value) {
+                //             return DropdownMenuItem<String>(
+                //               value: value,
+                //               child: Text(selectedValue),
+                //             );
+                //           }).toList(),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
+                const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -151,13 +189,15 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                         ref
                             .read(accountGroupsProvider)
                             .CreateOrEdit(
-                              _nameController.value.text,
-                              _narrController.value.text,
-                              _affGpController.text == 'true',
-                             int.parse(_natController.text),
-                             int.parse(_grpUnderController.text)
-                            //  int.parse(_idController.text),
-                            )
+                                _nameController.value.text,
+                                _narrController.value.text,
+                                // _affGpController.text == 'false',
+                                // _isdeffController.text == 'false',
+                                // int.parse(_natcontroller.text),
+                                // int.parse(_grpUndercontroller.text)
+
+                                
+                                )
                             .then((value) {
                           Get.to(() => const DataPage());
                           ref.refresh(accountGroupsProvider);

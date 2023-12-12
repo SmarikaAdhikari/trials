@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import 'package:trials/demo/cons/constants.dart';
 // import 'package:nb_utils/nb_utils.dart';
 // import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/erpapi/erp_add_datapage.dart';
+import 'package:trials/erpapi/erp_edit.dart';
 import 'package:trials/erpapi/erp_repository/erp_accountgroup_repositorty.dart';
 import 'package:trials/erpapi/login_page.dart';
 // import 'package:trials/erpapi/login_page.dart';
@@ -15,6 +18,15 @@ class DataPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextEditingController _nameController = TextEditingController();
+    TextEditingController _narrController = TextEditingController();
+    TextEditingController _affGpController = TextEditingController();
+    TextEditingController _isdeffController = TextEditingController();
+    TextEditingController _natcontroller =
+        TextEditingController(text: 'Default Value');
+    TextEditingController _grpUndercontroller =
+        TextEditingController(text: 'Default Value');
+
     final detail = ref.watch(accountGroupFutureProvider);
 
     return Scaffold(
@@ -34,15 +46,15 @@ class DataPage extends ConsumerWidget {
                   icon: const Icon(Icons.add, color: Colors.black),
                 ),
               ),
-                    Card(
-                      child: IconButton(
-                                onPressed: () async {
-                                  await setValue(accessToken, "");
-                                  Get.to(const LoginPage());
-                                },
-                                icon: const Icon(Icons.exit_to_app, color: Colors.black),
-                              ),
-                    )
+              Card(
+                child: IconButton(
+                  onPressed: () async {
+                    await setValue(accessToken, "");
+                    Get.to(const LoginPage());
+                  },
+                  icon: const Icon(Icons.exit_to_app, color: Colors.black),
+                ),
+              )
             ],
           ),
           // IconButton(
@@ -81,8 +93,7 @@ class DataPage extends ConsumerWidget {
                           ),
                           Row(
                             children: [
-                              Text(
-                                  "Id: ${data.items[index].id.toString()}",
+                              Text("Id: ${data.items[index].id.toString()}",
                                   style: const TextStyle(fontSize: 15)),
                               const SizedBox(
                                 width: 10,
@@ -118,17 +129,51 @@ class DataPage extends ConsumerWidget {
                           const SizedBox(
                             height: 5,
                           ),
-                          Text(
-                              "AccGpname: ${data.items[index].accountGroupName}",
-                              style: const TextStyle(
-                                fontSize: 15,
-                              )),
+                          Row(
+                            children: [
+                              Text(
+                                  "Narration: ${data.items[index].narration}",
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  )),
+                              const Spacer(),
+                              // Card(
+                              //   child: IconButton(
+                              //       onPressed: () {
+                              //         Get.to(() => Edit(
+                              //             data.items[index].name,
+                              //             data.items[index].narration,
+                              //            ));
+                              //       },
+                              //       icon: const Icon(Icons.edit)),
+                              // ),
+                              detail.when(
+                                data: (data) =>
+                                    Card(
+                                      child: IconButton(
+                                        onPressed: () {
+                                          Get.to(() => Edit(
+                                                name: data.items[index].name,
+                                                narration:
+                                                    data.items[index].narration,
+                                              ));
+                                        },
+                                                                      
+                                        icon: const Icon(Icons.edit),
+                                      ),
+                                    ),
+                               
+                                error: (Object error, StackTrace stackTrace) {
+                                  return Text(error.toString());
+                                },
+                                loading: () {
+                                  return const CircularProgressIndicator();
+                                },
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                      // const Text("wow",
-                      //     style: TextStyle(
-                      //       fontSize: 15,
-                      //     )),
                     ],
                   ),
                 ),

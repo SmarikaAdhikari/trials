@@ -32,17 +32,15 @@ class AccountGroupsService {
     // bool isDefault,
     // int nature,
     // int groupUnder,
-  
   ) async {
     const url =
         "https://erpapi.suktas.com/api/services/app/AccountGroups/CreateOrEdit";
-var datta = {
+    var datta = {
       "name": name,
       "narration": narration,
       "affectGrossProfit": false,
       "nature": 4,
       "groupUnder": 109,
-    
     };
     try {
       final res = await Api().post(url, data: datta);
@@ -50,6 +48,18 @@ var datta = {
       // if (data != null) {
       // window.alert(data);
       // }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> Delete(int id) async {
+    const url =
+        "https://erpapi.suktas.com/api/services/app/AccountGroups/Delete";
+
+    try {
+      final res = await Api().delete(url, queryParameters: {"id": id});
+      final data = json.decode(res.data)["result"];
     } catch (e) {
       rethrow;
     }

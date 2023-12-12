@@ -95,13 +95,41 @@ class DataPage extends ConsumerWidget {
                             children: [
                               Text("Id: ${data.items[index].id.toString()}",
                                   style: const TextStyle(fontSize: 15)),
-                              const SizedBox(
-                                width: 10,
+                              const Spacer(),
+                                      detail.when(
+                                data: (data) => Card(
+                                  child:
+                                IconButton(
+                                  onPressed: () {
+                                          ref
+                                              .read(accountGroupsProvider)
+                                              .Delete(data.items[index].id)
+                                              .then((value) {
+                                            ref.refresh(accountGroupFutureProvider);
+                                          });
+
+                                         
+                                    // ref.read(accountGroupsProvider).Delete(data.items[index].id.toString()).then((value) {
+                                    //   ref.refresh(accountGroupFutureProvider);
+                                    // });
+                                  },
+                                  icon: const Icon(Icons.delete)),
+                                ),
+                                error: (Object error, StackTrace stackTrace) {
+                                  return Text(error.toString());
+                                },
+                                loading: () {
+                                  return const CircularProgressIndicator();
+                                },
                               ),
-                              // Text("/ Nat: ${data.items[index].nature}",
-                              //     style: const TextStyle(
-                              //       fontSize: 15,
-                              //     )),
+                              // IconButton(
+                              //     onPressed: () {
+                              //       ref.read(accountGroupsProvider).Delete(data.items[index].id.toString()).then((value) {
+                              //         ref.refresh(accountGroupFutureProvider);
+                              //       });
+                              //     },
+                              //     icon: const Icon(Icons.delete)),
+                           
                             ],
                           ),
                           const SizedBox(
@@ -126,13 +154,9 @@ class DataPage extends ConsumerWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
                           Row(
                             children: [
-                              Text(
-                                  "Narration: ${data.items[index].narration}",
+                              Text("Narration: ${data.items[index].narration}",
                                   style: const TextStyle(
                                     fontSize: 15,
                                   )),
@@ -148,21 +172,19 @@ class DataPage extends ConsumerWidget {
                               //       icon: const Icon(Icons.edit)),
                               // ),
                               detail.when(
-                                data: (data) =>
-                                    Card(
-                                      child: IconButton(
-                                        onPressed: () {
-                                          Get.to(() => Edit(
-                                                name: data.items[index].name,
-                                                narration:
-                                                    data.items[index].narration,
-                                              ));
-                                        },
-                                                                      
-                                        icon: const Icon(Icons.edit),
-                                      ),
-                                    ),
-                               
+                                data: (data) => Card(
+                                  child:
+                                   IconButton(
+                                    onPressed: () {
+                                      Get.to(() => Edit(
+                                            name: data.items[index].name,
+                                            narration:
+                                                data.items[index].narration,
+                                          ));
+                                    },
+                                    icon: const Icon(Icons.edit),
+                                  ),
+                                ),
                                 error: (Object error, StackTrace stackTrace) {
                                   return Text(error.toString());
                                 },

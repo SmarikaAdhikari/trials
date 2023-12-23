@@ -22,6 +22,7 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _narrController = TextEditingController();
+  TextEditingController _accGroupcontroller = TextEditingController();
   TextEditingController _affGpController = TextEditingController();
     TextEditingController _isdeffController = TextEditingController();
     TextEditingController _natcontroller = TextEditingController(text: 'Default Value');
@@ -191,6 +192,7 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                             .CreateOrEdit(
                                 _nameController.value.text,
                                 _narrController.value.text,
+                                // _accGroupcontroller.value.text,
                                 // _affGpController.text == 'false',
                                 // _isdeffController.text == 'false',
                                 // int.parse(_natcontroller.text),

@@ -5,12 +5,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
+import 'package:trials/erpapi/erp_add_datapage.dart';
 // import 'package:nb_utils/nb_utils.dart';
 // import 'package:trials/demo/cons/constants.dart';
-import 'package:trials/erpapi/erp_add_datapage.dart';
+// import 'package:trials/erpapi/erp_add_datapage.dart';
 import 'package:trials/erpapi/erp_edit.dart';
 import 'package:trials/erpapi/erp_repository/erp_accountgroup_repositorty.dart';
 import 'package:trials/erpapi/login_page.dart';
+import 'package:trials/erpapi/reactive_page.dart';
 // import 'package:trials/erpapi/login_page.dart';
 
 class DataPage extends ConsumerWidget {
@@ -41,7 +43,8 @@ class DataPage extends ConsumerWidget {
               Card(
                 child: IconButton(
                   onPressed: () {
-                    Get.to(const AddPage());
+                    // Get.to(const AddPage());
+                     Get.to(const ReactivePage());
                   },
                   icon: const Icon(Icons.add, color: Colors.black),
                 ),
@@ -57,13 +60,7 @@ class DataPage extends ConsumerWidget {
               )
             ],
           ),
-          // IconButton(
-          //   onPressed: () async {
-          //     await setValue(accessToken, "");
-          //     Get.to(const LoginPage());
-          //   },
-          //   icon: const Icon(Icons.exit_to_app, color: Colors.white),
-          // )
+    
         ],
       ),
       body: detail.when(data: (
@@ -108,10 +105,7 @@ class DataPage extends ConsumerWidget {
                                             ref.refresh(accountGroupFutureProvider);
                                           });
 
-                                         
-                                    // ref.read(accountGroupsProvider).Delete(data.items[index].id.toString()).then((value) {
-                                    //   ref.refresh(accountGroupFutureProvider);
-                                    // });
+                                
                                   },
                                   icon: const Icon(Icons.delete)),
                                 ),
@@ -160,6 +154,7 @@ class DataPage extends ConsumerWidget {
                                   style: const TextStyle(
                                     fontSize: 15,
                                   )),
+                              
                               const Spacer(),
                               // Card(
                               //   child: IconButton(
@@ -178,8 +173,9 @@ class DataPage extends ConsumerWidget {
                                     onPressed: () {
                                       Get.to(() => Edit(
                                             name: data.items[index].name,
-                                            narration:
-                                                data.items[index].narration,
+                                            // accountGroupName:
+                                            //     data.items[index].narration!,
+                                            narration: data.items[index].narration!,
                                           ));
                                     },
                                     icon: const Icon(Icons.edit),
@@ -194,6 +190,10 @@ class DataPage extends ConsumerWidget {
                               ),
                             ],
                           ),
+                            //  Text("AccGroup name: ${data.items[index].accountGroupName}",
+                            //       style: const TextStyle(
+                            //         fontSize: 15,
+                            //       )),
                         ],
                       ),
                     ],

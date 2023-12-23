@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/erpapi/login_page.dart';
+import 'package:trials/erpapi/reactive_page.dart';
 
 
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const DataPage());
+      // home: const ReactivePage());
       home: const LoginPage());
 
 

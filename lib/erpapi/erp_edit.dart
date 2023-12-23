@@ -9,10 +9,13 @@ import 'package:trials/erpapi/erp_repository/erp_accountgroup_repositorty.dart';
 
 class Edit extends ConsumerStatefulWidget {
   // ignore: prefer_const_constructors_in_immutables
-  Edit({super.key, required this.name, required this.narration});
+  Edit({super.key, required this.name, required this.narration,
+  //  required this.accountGroupName
+   });
 
   final String name;
   final String narration;
+  // final String accountGroupName ;
 
   @override
   ConsumerState<Edit> createState() => _EditState();
@@ -21,6 +24,8 @@ class Edit extends ConsumerStatefulWidget {
 class _EditState extends ConsumerState<Edit> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _narrController = TextEditingController();
+  // final TextEditingController _accGroupNameController =
+  //     TextEditingController();
 
   @override
   void initState() {
@@ -65,7 +70,8 @@ class _EditState extends ConsumerState<Edit> {
                             .read(accountGroupsProvider)
                             .CreateOrEdit(
                                 _nameController.value.text,
-                                _narrController.value.text,
+                                _narrController.value.text
+                         
                       
 
                                 

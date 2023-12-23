@@ -28,6 +28,7 @@ class AccountGroupsService {
   Future<void> CreateOrEdit(
     String name,
     String narration,
+    // String accountGroupName,
     // bool affectGrossProfit,
     // bool isDefault,
     // int nature,
@@ -41,15 +42,13 @@ class AccountGroupsService {
       "affectGrossProfit": false,
       "nature": 4,
       "groupUnder": 109,
+      // "accountGroupName": accountGroupName,
     };
     try {
       final res = await Api().post(url, data: datta);
       final data = json.decode(res.data)["result"];
-      // if (data != null) {
-      // window.alert(data);
-      // }
     } catch (e) {
-      rethrow;
+    rethrow;
     }
   }
 

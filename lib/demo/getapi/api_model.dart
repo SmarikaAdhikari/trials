@@ -1,6 +1,6 @@
 class Account {
     final int totalCount;
-    final List<Item> items;
+    final List<Items> items;
 
     Account({
         required this.totalCount,
@@ -9,13 +9,13 @@ class Account {
 
     factory Account.fromJson(Map<String, dynamic> json) => Account(
         totalCount: json["totalCount"],
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        items: List<Items>.from(json["items"].map((x) => Items.fromJson(x))),
     );
 
    
 }
 
-class Item {
+class Items {
     final String name;
     final String? address;
     final double? creditLimit;
@@ -25,7 +25,7 @@ class Item {
     final String accountGroupName;
     final String id;
 
-    Item({
+    Items({
         required this.name,
         required this.address,
         required this.creditLimit,
@@ -36,7 +36,7 @@ class Item {
         required this.id,
     });
 
-    factory Item.fromJson(Map<String, dynamic> json) => Item(
+    factory Items.fromJson(Map<String, dynamic> json) => Items(
         name: json["name"],
         address: json["address"],
         creditLimit: json["creditLimit"],

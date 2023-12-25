@@ -31,17 +31,19 @@ class AccountGroupsService {
     // String accountGroupName,
     // bool affectGrossProfit,
     // bool isDefault,
-    // int nature,
-    // int groupUnder,
+    
+    int groupUnder,
+    int nature,
+    bool affectGrossProfit,
   ) async {
     const url =
         "https://erpapi.suktas.com/api/services/app/AccountGroups/CreateOrEdit";
     var datta = {
       "name": name,
       "narration": narration,
-      "affectGrossProfit": false,
-      "nature": 4,
-      "groupUnder": 109,
+      "affectGrossProfit": affectGrossProfit,
+      "nature": nature,
+      "groupUnder": groupUnder,
       // "accountGroupName": accountGroupName,
     };
     try {

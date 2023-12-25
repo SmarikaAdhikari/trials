@@ -24,9 +24,11 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
   TextEditingController _narrController = TextEditingController();
   TextEditingController _accGroupcontroller = TextEditingController();
   TextEditingController _affGpController = TextEditingController();
-    TextEditingController _isdeffController = TextEditingController();
-    TextEditingController _natcontroller = TextEditingController(text: 'Default Value');
-    TextEditingController _grpUndercontroller = TextEditingController(text: 'Default Value');
+  TextEditingController _isdeffController = TextEditingController();
+  TextEditingController _natcontroller =
+      TextEditingController(text: 'Default Value');
+  TextEditingController _grpUndercontroller =
+      TextEditingController(text: 'Default Value');
   // TextEditingController _natController = TextEditingController();
   // TextEditingController _grpUnderController = TextEditingController();
   // TextEditingController _idController = TextEditingController();
@@ -102,17 +104,17 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
                       enabled: false,
-                      
+
                       // controller: _natController,
-                      
+
                       decoration: const InputDecoration(hintText: ' Nature'),
-                 
+
                       onSaved: (value) {},
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                        Container(
+                Container(
                   height: 50,
                   decoration: BoxDecoration(
                     border: Border.all(),
@@ -121,11 +123,12 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
-                       enabled: false,
+                      enabled: false,
                       //  controller: Text("de") ,
                       // controller: _grpUnderController,
-                      decoration: const InputDecoration(hintText: 'Group Under control '),
-                  
+                      decoration: const InputDecoration(
+                          hintText: 'Group Under control '),
+
                       onSaved: (value) {},
                     ),
                   ),
@@ -190,16 +193,19 @@ class _AddPageConsumerState extends ConsumerState<AddPage> {
                         ref
                             .read(accountGroupsProvider)
                             .CreateOrEdit(
-                                _nameController.value.text,
-                                _narrController.value.text,
-                                // _accGroupcontroller.value.text,
-                                // _affGpController.text == 'false',
-                                // _isdeffController.text == 'false',
-                                // int.parse(_natcontroller.text),
-                                // int.parse(_grpUndercontroller.text)
+                              _nameController.value.text,
+                              _narrController.value.text,
+                              // false,
+                              100,
+                              1,
+                               false,
 
-                                
-                                )
+                              // _accGroupcontroller.value.text,
+                              // _affGpController.text == 'false',
+                              // _isdeffController.text == 'false',
+                              // int.parse(_natcontroller.text),
+                              // int.parse(_grpUndercontroller.text)
+                            )
                             .then((value) {
                           Get.to(() => const DataPage());
                           ref.refresh(accountGroupsProvider);

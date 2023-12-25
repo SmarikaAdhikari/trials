@@ -7,7 +7,6 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:trials/demo/cons/constants.dart';
 import 'package:trials/demo/cons/my_config.dart';
 
-
 class Api {
   final Dio api = Dio();
   final dio = createDio();

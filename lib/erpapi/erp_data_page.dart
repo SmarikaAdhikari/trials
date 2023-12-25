@@ -10,7 +10,9 @@ import 'package:trials/erpapi/erp_add_datapage.dart';
 // import 'package:trials/demo/cons/constants.dart';
 // import 'package:trials/erpapi/erp_add_datapage.dart';
 import 'package:trials/erpapi/erp_edit.dart';
+import 'package:trials/erpapi/erp_model/dropdown_model.dart';
 import 'package:trials/erpapi/erp_repository/erp_accountgroup_repositorty.dart';
+import 'package:trials/erpapi/erp_services/erp_dropdown_service.dart';
 import 'package:trials/erpapi/login_page.dart';
 import 'package:trials/erpapi/reactive_page.dart';
 // import 'package:trials/erpapi/login_page.dart';
@@ -92,6 +94,11 @@ class DataPage extends ConsumerWidget {
                             children: [
                               Text("Id: ${data.items[index].id.toString()}",
                                   style: const TextStyle(fontSize: 15)),
+                                 const  SizedBox(width: 10),
+                                  Text(  "/ AffGross: ${data.items[index].affectGrossProfit}",
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  )),
                               const Spacer(),
                                       detail.when(
                                 data: (data) => Card(
@@ -127,7 +134,7 @@ class DataPage extends ConsumerWidget {
                             ],
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 2,
                           ),
                           Row(
                             children: [
@@ -174,7 +181,7 @@ class DataPage extends ConsumerWidget {
                                       Get.to(() => Edit(
                                             name: data.items[index].name,
                                             // accountGroupName:
-                                            //     data.items[index].narration!,
+                                            //     data.items[index].accountGroupName!,
                                             narration: data.items[index].narration!,
                                           ));
                                     },
@@ -190,10 +197,15 @@ class DataPage extends ConsumerWidget {
                               ),
                             ],
                           ),
-                            //  Text("AccGroup name: ${data.items[index].accountGroupName}",
-                            //       style: const TextStyle(
-                            //         fontSize: 15,
-                            //       )),
+                             Text("AccGroupname: ${data.items[index].accountGroupName}",
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  )),
+                                  // const SizedBox( height: 10),
+                                  //       Text("Affect: ${data.items[index].affectGrossProfit}",
+                                  // style: const TextStyle(
+                                  //   fontSize: 15,
+                                  // )),
                         ],
                       ),
                     ],
@@ -211,3 +223,4 @@ class DataPage extends ConsumerWidget {
     );
   }
 }
+

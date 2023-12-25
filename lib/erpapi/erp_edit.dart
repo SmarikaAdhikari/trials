@@ -15,7 +15,7 @@ class Edit extends ConsumerStatefulWidget {
 
   final String name;
   final String narration;
-  // final String accountGroupName ;
+  // final String accountGroupName;
 
   @override
   ConsumerState<Edit> createState() => _EditState();
@@ -24,6 +24,7 @@ class Edit extends ConsumerStatefulWidget {
 class _EditState extends ConsumerState<Edit> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _narrController = TextEditingController();
+  // String dropdownValue = 'Primary';
   // final TextEditingController _accGroupNameController =
   //     TextEditingController();
 
@@ -70,7 +71,23 @@ class _EditState extends ConsumerState<Edit> {
                             .read(accountGroupsProvider)
                             .CreateOrEdit(
                                 _nameController.value.text,
-                                _narrController.value.text
+                                _narrController.value.text,
+                                // false,
+                               100,
+                               1,
+                                  false,
+
+
+                               
+
+
+
+
+                               
+                         
+
+                               
+                              
                          
                       
 
